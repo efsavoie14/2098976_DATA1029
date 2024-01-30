@@ -5,12 +5,12 @@ WHERE title LIKE '%computer%';
 
 -- question 2
 SELECT title, price
-FROM titlesSELECT title, price
+FROM titles, price
 WHERE title LIKE '%computer%' AND title NOT LIKE '%computers%';
 
 -- question 3
 SELECT title, price
-FROM titlesSELECT title, price
+FROM titles, price
 WHERE title LIKE 'SU%' OR title LIKE 'BU%';
 
 -- question 4
