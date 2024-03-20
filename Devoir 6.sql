@@ -24,7 +24,7 @@ WHERE p.country = 'Canada';
 -- 4 Noms complets des employés qui ont un manager. (10pts)
 SELECT e.fname, e.lname
 FROM employees e
-WHERE job_id IN (SELECT job_id FROM jobs WHERE job_desc = 'MANAGER');
+WHERE job_id IN (SELECT job_id FROM jobs WHERE job_desc = 'SEINIOR');
 
 -- 5 Noms complets des employés qui ont un salaire au-dessus de la moyenne de salaire chez leur employeur. (10 pts)
 SELECT e.fname, e.lname, e.salary
