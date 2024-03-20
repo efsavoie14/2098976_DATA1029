@@ -22,9 +22,12 @@ INNER JOIN publishers p ON e.pub_id = p.pub_id
 WHERE p.country = 'Canada';
 
 -- 4 Noms complets des employés qui ont un manager. (10pts)
-SELECT e.fname, e.lname
+SELECT CONCAT(e.fname, ' ', e.lname) AS Full_Name,
+e.job_lvl
 FROM employees e
-WHERE job_id IN (SELECT job_id FROM jobs WHERE job_desc = 'SEINIOR');
+WHERE e.job_lvl <> (
+SELECT MAX(job_lvl) FROM employees
+);
 
 -- 5 Noms complets des employés qui ont un salaire au-dessus de la moyenne de salaire chez leur employeur. (10 pts)
 SELECT e.fname, e.lname, e.salary
@@ -45,13 +48,13 @@ WHERE e.salary = (SELECT MIN(salary)
 );
 
 -- 7 De quels types sont les livres les plus vendus? (10 pts)
-SELECT t.type
-FROM titles t
-WHERE t.title_id IN (SELECT title_id
-FROM sales
-GROUP BY title_id
-ORDER BY SUM(qty) DESC
-);
+SELECT 
+t.type AS Book_Type,
+SUM(s.qty) AS Total_Sold
+FROM sales s
+JOIN titles t ON s.title_id = t.title_id
+GROUP BY t.type
+ORDER BY Total_Sold DESC;
 
 -- 8 Pour chaque boutique, les 2 livres les plus vendus et leurs prix. (10 pts)
 SELECT s.stor_name, t.title, t.price
