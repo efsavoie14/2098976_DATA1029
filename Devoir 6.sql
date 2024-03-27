@@ -22,8 +22,7 @@ INNER JOIN publishers p ON e.pub_id = p.pub_id
 WHERE p.country = 'Canada';
 
 -- 4 Noms complets des employés qui ont un manager. (10pts)
-SELECT CONCAT(e.fname, ' ', e.lname) AS Full_Name,
-e.job_lvl
+SELECT CONCAT(e.fname, ' ', e.lname) AS Full_Name, e.job_lvl
 FROM employees e
 WHERE e.job_lvl <> (
 SELECT MAX(job_lvl) FROM employees
@@ -48,8 +47,7 @@ WHERE e.salary = (SELECT MIN(salary)
 );
 
 -- 7 De quels types sont les livres les plus vendus? (10 pts)
-SELECT 
-t.type AS Book_Type,
+SELECT t.type AS Book_Type,
 SUM(s.qty) AS Total_Sold
 FROM sales s
 JOIN titles t ON s.title_id = t.title_id
